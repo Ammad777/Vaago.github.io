@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VaagoProjectModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fist_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsResereved" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Guest_Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="IsRegistered" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Guests" Relationship="Self.FK__Guest__Customer___32E0915F" FromRole="Customer" ToRole="Guest" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Custo__34C8D9D1" FromRole="Customer" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Members" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adults" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Child" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_ID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Guest__Customer___32E0915F" FromRole="Guest" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="R_Id" />
+    </Key>
+    <Property Name="R_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="D_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="A_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Room_No" Type="Int32" />
+    <Property Name="Customer_Id" Type="Int32" />
+    <Property Name="NoOfPerson" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Reservati__Custo__34C8D9D1" FromRole="Reservation" ToRole="Customer" />
+    <NavigationProperty Name="Room" Relationship="Self.FK__Reservati__Room___33D4B598" FromRole="Reservation" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Room_Id" />
+    </Key>
+    <Property Name="Room_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Room_No" Type="Int32" />
+    <Property Name="Room_Status" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AdminId" Type="Int32" />
+    <Property Name="Room_Type_Id" Type="Int32" />
+    <Property Name="IsClean" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Room___33D4B598" FromRole="Room" ToRole="Reservation" />
+    <NavigationProperty Name="System_Admin" Relationship="Self.FK__Room__AdminId__35BCFE0A" FromRole="Room" ToRole="System_Admin" />
+    <NavigationProperty Name="Room_Type" Relationship="Self.FK__Room__Room_Type___36B12243" FromRole="Room" ToRole="Room_Type" />
+  </EntityType>
+  <EntityType Name="Room_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Room_Price" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Max_Guest" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Admin_ID" Type="Int32" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__Room_Type___36B12243" FromRole="Room_Type" ToRole="Room" />
+    <NavigationProperty Name="System_Admin" Relationship="Self.FK__Room_Type__Admin__37A5467C" FromRole="Room_Type" ToRole="System_Admin" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="System_Admin">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Pass" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK__Room__AdminId__35BCFE0A" FromRole="System_Admin" ToRole="Room" />
+    <NavigationProperty Name="Room_Type" Relationship="Self.FK__Room_Type__Admin__37A5467C" FromRole="System_Admin" ToRole="Room_Type" />
+  </EntityType>
+  <Association Name="FK__Guest__Customer___32E0915F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__Custo__34C8D9D1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__Room___33D4B598">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Room_Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Room_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__AdminId__35BCFE0A">
+    <End Role="System_Admin" Type="Self.System_Admin" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Admin">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="AdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__Room_Type___36B12243">
+    <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room_Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="Room_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room_Type__Admin__37A5467C">
+    <End Role="System_Admin" Type="Self.System_Admin" Multiplicity="0..1" />
+    <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Admin">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="Room_Type">
+        <PropertyRef Name="Admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HMS2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Guests" EntityType="Self.Guest" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="Room_Type" EntityType="Self.Room_Type" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="System_Admin" EntityType="Self.System_Admin" />
+    <AssociationSet Name="FK__Guest__Customer___32E0915F" Association="Self.FK__Guest__Customer___32E0915F">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Guest" EntitySet="Guests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__Custo__34C8D9D1" Association="Self.FK__Reservati__Custo__34C8D9D1">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__Room___33D4B598" Association="Self.FK__Reservati__Room___33D4B598">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__AdminId__35BCFE0A" Association="Self.FK__Room__AdminId__35BCFE0A">
+      <End Role="System_Admin" EntitySet="System_Admin" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__Room_Type___36B12243" Association="Self.FK__Room__Room_Type___36B12243">
+      <End Role="Room_Type" EntitySet="Room_Type" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room_Type__Admin__37A5467C" Association="Self.FK__Room_Type__Admin__37A5467C">
+      <End Role="System_Admin" EntitySet="System_Admin" />
+      <End Role="Room_Type" EntitySet="Room_Type" />
+    </AssociationSet>
+    <FunctionImport Name="DeleteCustomer">
+      <Parameter Name="Customer_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteGuest">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteReserve">
+      <Parameter Name="R_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteRoom">
+      <Parameter Name="Room_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="deleteRoomType">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertCustomer">
+      <Parameter Name="Fist_Name" Mode="In" Type="String" />
+      <Parameter Name="Last_Name" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="CNIC" Mode="In" Type="String" />
+      <Parameter Name="Gender" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="IsReserved" Mode="In" Type="String" />
+      <Parameter Name="Guest_Status" Mode="In" Type="String" />
+      <Parameter Name="IsRegistered" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertGuest">
+      <Parameter Name="Members" Mode="In" Type="String" />
+      <Parameter Name="Adults" Mode="In" Type="String" />
+      <Parameter Name="Child" Mode="In" Type="String" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="Customer_Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertReserve">
+      <Parameter Name="D_Date" Mode="In" Type="String" />
+      <Parameter Name="A_Date" Mode="In" Type="String" />
+      <Parameter Name="Room_No" Mode="In" Type="String" />
+      <Parameter Name="Customer_Id" Mode="In" Type="String" />
+      <Parameter Name="NoOfPerson" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertRoom">
+      <Parameter Name="Room_No" Mode="In" Type="String" />
+      <Parameter Name="Room_Status" Mode="In" Type="String" />
+      <Parameter Name="AdminId" Mode="In" Type="String" />
+      <Parameter Name="Room_Type_Id" Mode="In" Type="String" />
+      <Parameter Name="IsClean" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertRoomType">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Capacity" Mode="In" Type="String" />
+      <Parameter Name="Room_Price" Mode="In" Type="String" />
+      <Parameter Name="Max_Guest" Mode="In" Type="String" />
+      <Parameter Name="Admin_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectCustomer" ReturnType="Collection(VaagoProjectModel1.SelectCustomer_Result)" />
+    <FunctionImport Name="selectReserve" ReturnType="Collection(VaagoProjectModel1.selectReserve_Result)" />
+    <FunctionImport Name="selectReserve_byid" ReturnType="Collection(VaagoProjectModel1.selectReserve_byid_Result)">
+      <Parameter Name="R_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectReserveD" ReturnType="Collection(VaagoProjectModel1.selectReserveD_Result)" />
+    <FunctionImport Name="selectRoom" ReturnType="Collection(VaagoProjectModel1.selectRoom_Result)" />
+    <FunctionImport Name="selectRoom_byid" ReturnType="Collection(VaagoProjectModel1.selectRoom_byid_Result)">
+      <Parameter Name="Room_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="selectRoomType" ReturnType="Collection(VaagoProjectModel1.selectRoomType_Result)" />
+    <FunctionImport Name="selectRoomType_byid" ReturnType="Collection(VaagoProjectModel1.selectRoomType_byid_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="show_record" ReturnType="Collection(VaagoProjectModel1.show_record_Result)">
+      <Parameter Name="Customer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="showGuest" ReturnType="Collection(VaagoProjectModel1.showGuest_Result)" />
+    <FunctionImport Name="showGuest_byid" ReturnType="Collection(VaagoProjectModel1.showGuest_byid_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VaagoProjectModel1.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VaagoProjectModel1.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="UpdateCustomer">
+      <Parameter Name="Customer_id" Mode="In" Type="Int32" />
+      <Parameter Name="Fist_Name" Mode="In" Type="String" />
+      <Parameter Name="Last_Name" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="CNIC" Mode="In" Type="String" />
+      <Parameter Name="Gender" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="IsResereved" Mode="In" Type="String" />
+      <Parameter Name="Guest_Status" Mode="In" Type="String" />
+      <Parameter Name="IsRegistered" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateGuest">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="Members" Mode="In" Type="Int32" />
+      <Parameter Name="Adults" Mode="In" Type="Int32" />
+      <Parameter Name="Child" Mode="In" Type="Int32" />
+      <Parameter Name="phone" Mode="In" Type="String" />
+      <Parameter Name="Customer_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="updateReserve">
+      <Parameter Name="R_Id" Mode="In" Type="Int32" />
+      <Parameter Name="D_Date" Mode="In" Type="String" />
+      <Parameter Name="A_Date" Mode="In" Type="String" />
+      <Parameter Name="Room_No" Mode="In" Type="String" />
+      <Parameter Name="Customer_Id" Mode="In" Type="String" />
+      <Parameter Name="NoOfPerson" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateRoom">
+      <Parameter Name="Room_Id" Mode="In" Type="Int32" />
+      <Parameter Name="Room_No" Mode="In" Type="String" />
+      <Parameter Name="Room_Status" Mode="In" Type="String" />
+      <Parameter Name="AdminId" Mode="In" Type="String" />
+      <Parameter Name="Room_Type_Id" Mode="In" Type="String" />
+      <Parameter Name="IsClean" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateRoomType">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Capacity" Mode="In" Type="String" />
+      <Parameter Name="Room_Price" Mode="In" Type="String" />
+      <Parameter Name="Max_Guest" Mode="In" Type="String" />
+      <Parameter Name="Admin_ID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SelectCustomer_Result">
+    <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+    <Property Type="String" Name="Fist_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IsResereved" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Guest_Status" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="IsRegistered" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="selectReserve_Result">
+    <Property Type="String" Name="D_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="A_Date" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Room_No" Nullable="true" />
+    <Property Type="String" Name="Fist_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="NoOfPerson" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectReserve_byid_Result">
+    <Property Type="Int32" Name="R_Id" Nullable="false" />
+    <Property Type="String" Name="D_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="A_Date" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Room_No" Nullable="true" />
+    <Property Type="Int32" Name="Customer_Id" Nullable="true" />
+    <Property Type="Int32" Name="NoOfPerson" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectReserveD_Result">
+    <Property Type="Int32" Name="R_Id" Nullable="false" />
+    <Property Type="String" Name="D_Date" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="A_Date" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Room_No" Nullable="true" />
+    <Property Type="Int32" Name="Customer_Id" Nullable="true" />
+    <Property Type="Int32" Name="NoOfPerson" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectRoom_Result">
+    <Property Type="Int32" Name="Room_Id" Nullable="false" />
+    <Property Type="Int32" Name="Room_No" Nullable="true" />
+    <Property Type="String" Name="Room_Status" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="AdminId" Nullable="true" />
+    <Property Type="Int32" Name="Room_Type_Id" Nullable="true" />
+    <Property Type="String" Name="IsClean" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="selectRoom_byid_Result">
+    <Property Type="Int32" Name="Room_Id" Nullable="false" />
+    <Property Type="Int32" Name="Room_No" Nullable="true" />
+    <Property Type="String" Name="Room_Status" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="AdminId" Nullable="true" />
+    <Property Type="Int32" Name="Room_Type_Id" Nullable="true" />
+    <Property Type="String" Name="IsClean" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="selectRoomType_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Capacity" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Room_Price" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Max_Guest" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Admin_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="selectRoomType_byid_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Capacity" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Room_Price" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Max_Guest" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Admin_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="show_record_Result">
+    <Property Type="Int32" Name="Customer_Id" Nullable="false" />
+    <Property Type="String" Name="Fist_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Last_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="CNIC" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IsResereved" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Guest_Status" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="IsRegistered" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="showGuest_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Members" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Adults" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Child" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Customer_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="showGuest_byid_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="Members" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Adults" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Child" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Customer_ID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

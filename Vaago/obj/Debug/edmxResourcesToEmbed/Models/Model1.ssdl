@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VaagoProjectModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fist_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="CNIC" Type="nvarchar" MaxLength="20" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="20" />
+    <Property Name="IsResereved" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="20" />
+    <Property Name="Guest_Status" Type="nvarchar" MaxLength="10" />
+    <Property Name="IsRegistered" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Members" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adults" Type="nvarchar" MaxLength="50" />
+    <Property Name="Child" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Customer_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="R_Id" />
+    </Key>
+    <Property Name="R_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="D_Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="A_Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="Room_No" Type="int" />
+    <Property Name="Customer_Id" Type="int" />
+    <Property Name="NoOfPerson" Type="int" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Room_Id" />
+    </Key>
+    <Property Name="Room_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Room_No" Type="int" />
+    <Property Name="Room_Status" Type="nvarchar" MaxLength="15" />
+    <Property Name="AdminId" Type="int" />
+    <Property Name="Room_Type_Id" Type="int" />
+    <Property Name="IsClean" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Room_Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Capacity" Type="nvarchar" MaxLength="20" />
+    <Property Name="Room_Price" Type="nvarchar" MaxLength="20" />
+    <Property Name="Max_Guest" Type="nvarchar" MaxLength="20" />
+    <Property Name="Admin_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="System_Admin">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Guest__Customer___32E0915F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__Custo__34C8D9D1">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservati__Room___33D4B598">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Room_Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="Room_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__AdminId__35BCFE0A">
+    <End Role="System_Admin" Type="Self.System_Admin" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Admin">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="AdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__Room_Type___36B12243">
+    <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room_Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="Room_Type_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room_Type__Admin__37A5467C">
+    <End Role="System_Admin" Type="Self.System_Admin" Multiplicity="0..1" />
+    <End Role="Room_Type" Type="Self.Room_Type" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System_Admin">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="Room_Type">
+        <PropertyRef Name="Admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeleteCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteReserve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="R_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Room_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="deleteRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="InsertCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fist_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="CNIC" Type="varchar" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="IsReserved" Type="varchar" Mode="In" />
+    <Parameter Name="Guest_Status" Type="varchar" Mode="In" />
+    <Parameter Name="IsRegistered" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="InsertGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Members" Type="nvarchar" Mode="In" />
+    <Parameter Name="Adults" Type="nvarchar" Mode="In" />
+    <Parameter Name="Child" Type="nvarchar" Mode="In" />
+    <Parameter Name="phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Customer_Id" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insertReserve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="D_Date" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Date" Type="nvarchar" Mode="In" />
+    <Parameter Name="Room_No" Type="nvarchar" Mode="In" />
+    <Parameter Name="Customer_Id" Type="nvarchar" Mode="In" />
+    <Parameter Name="NoOfPerson" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insertRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Room_No" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Status" Type="varchar" Mode="In" />
+    <Parameter Name="AdminId" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Type_Id" Type="varchar" Mode="In" />
+    <Parameter Name="IsClean" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="insertRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Capacity" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Price" Type="varchar" Mode="In" />
+    <Parameter Name="Max_Guest" Type="varchar" Mode="In" />
+    <Parameter Name="Admin_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SelectCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selectReserve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selectReserve_byid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="R_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selectReserveD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selectRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selectRoom_byid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Room_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="selectRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="selectRoomType_byid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="show_record" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="showGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="showGuest_byid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdateCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Customer_id" Type="int" Mode="In" />
+    <Parameter Name="Fist_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Last_Name" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="CNIC" Type="varchar" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="varchar" Mode="In" />
+    <Parameter Name="IsResereved" Type="varchar" Mode="In" />
+    <Parameter Name="Guest_Status" Type="varchar" Mode="In" />
+    <Parameter Name="IsRegistered" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="updateGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Members" Type="int" Mode="In" />
+    <Parameter Name="Adults" Type="int" Mode="In" />
+    <Parameter Name="Child" Type="int" Mode="In" />
+    <Parameter Name="phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Customer_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="updateReserve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="R_Id" Type="int" Mode="In" />
+    <Parameter Name="D_Date" Type="nvarchar" Mode="In" />
+    <Parameter Name="A_Date" Type="nvarchar" Mode="In" />
+    <Parameter Name="Room_No" Type="nvarchar" Mode="In" />
+    <Parameter Name="Customer_Id" Type="nvarchar" Mode="In" />
+    <Parameter Name="NoOfPerson" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="updateRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Room_Id" Type="int" Mode="In" />
+    <Parameter Name="Room_No" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Status" Type="varchar" Mode="In" />
+    <Parameter Name="AdminId" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Type_Id" Type="varchar" Mode="In" />
+    <Parameter Name="IsClean" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="updateRoomType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Capacity" Type="varchar" Mode="In" />
+    <Parameter Name="Room_Price" Type="varchar" Mode="In" />
+    <Parameter Name="Max_Guest" Type="varchar" Mode="In" />
+    <Parameter Name="Admin_ID" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="VaagoProjectModel1StoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room_Type" EntityType="Self.Room_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="System_Admin" EntityType="Self.System_Admin" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Guest__Customer___32E0915F" Association="Self.FK__Guest__Customer___32E0915F">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__Custo__34C8D9D1" Association="Self.FK__Reservati__Custo__34C8D9D1">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservati__Room___33D4B598" Association="Self.FK__Reservati__Room___33D4B598">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__AdminId__35BCFE0A" Association="Self.FK__Room__AdminId__35BCFE0A">
+      <End Role="System_Admin" EntitySet="System_Admin" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__Room_Type___36B12243" Association="Self.FK__Room__Room_Type___36B12243">
+      <End Role="Room_Type" EntitySet="Room_Type" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room_Type__Admin__37A5467C" Association="Self.FK__Room_Type__Admin__37A5467C">
+      <End Role="System_Admin" EntitySet="System_Admin" />
+      <End Role="Room_Type" EntitySet="Room_Type" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

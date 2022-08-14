@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VaagoProjectModel1StoreContainer" CdmEntityContainer="HMS2Entities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Fist_Name" ColumnName="Fist_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsResereved" ColumnName="IsResereved" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Guest_Status" ColumnName="Guest_Status" />
+          <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Guests">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.Guest">
+        <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Members" ColumnName="Members" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
+          <ScalarProperty Name="Child" ColumnName="Child" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+          <ScalarProperty Name="D_Date" ColumnName="D_Date" />
+          <ScalarProperty Name="A_Date" ColumnName="A_Date" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Room_Status" ColumnName="Room_Status" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Room_Type_Id" ColumnName="Room_Type_Id" />
+          <ScalarProperty Name="IsClean" ColumnName="IsClean" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Room_Type">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.Room_Type">
+        <MappingFragment StoreEntitySet="Room_Type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Room_Price" ColumnName="Room_Price" />
+          <ScalarProperty Name="Max_Guest" ColumnName="Max_Guest" />
+          <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Admin">
+      <EntityTypeMapping TypeName="VaagoProjectModel1.System_Admin">
+        <MappingFragment StoreEntitySet="System_Admin">
+          <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeleteCustomer" FunctionName="VaagoProjectModel1.Store.DeleteCustomer" />
+    <FunctionImportMapping FunctionImportName="deleteGuest" FunctionName="VaagoProjectModel1.Store.deleteGuest" />
+    <FunctionImportMapping FunctionImportName="deleteReserve" FunctionName="VaagoProjectModel1.Store.deleteReserve" />
+    <FunctionImportMapping FunctionImportName="deleteRoom" FunctionName="VaagoProjectModel1.Store.deleteRoom" />
+    <FunctionImportMapping FunctionImportName="deleteRoomType" FunctionName="VaagoProjectModel1.Store.deleteRoomType" />
+    <FunctionImportMapping FunctionImportName="InsertCustomer" FunctionName="VaagoProjectModel1.Store.InsertCustomer" />
+    <FunctionImportMapping FunctionImportName="InsertGuest" FunctionName="VaagoProjectModel1.Store.InsertGuest" />
+    <FunctionImportMapping FunctionImportName="insertReserve" FunctionName="VaagoProjectModel1.Store.insertReserve" />
+    <FunctionImportMapping FunctionImportName="insertRoom" FunctionName="VaagoProjectModel1.Store.insertRoom" />
+    <FunctionImportMapping FunctionImportName="insertRoomType" FunctionName="VaagoProjectModel1.Store.insertRoomType" />
+    <FunctionImportMapping FunctionImportName="SelectCustomer" FunctionName="VaagoProjectModel1.Store.SelectCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.SelectCustomer_Result">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Fist_Name" ColumnName="Fist_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsResereved" ColumnName="IsResereved" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Guest_Status" ColumnName="Guest_Status" />
+          <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectReserve" FunctionName="VaagoProjectModel1.Store.selectReserve">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectReserve_Result">
+          <ScalarProperty Name="D_Date" ColumnName="D_Date" />
+          <ScalarProperty Name="A_Date" ColumnName="A_Date" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Fist_Name" ColumnName="Fist_Name" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectReserve_byid" FunctionName="VaagoProjectModel1.Store.selectReserve_byid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectReserve_byid_Result">
+          <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+          <ScalarProperty Name="D_Date" ColumnName="D_Date" />
+          <ScalarProperty Name="A_Date" ColumnName="A_Date" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectReserveD" FunctionName="VaagoProjectModel1.Store.selectReserveD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectReserveD_Result">
+          <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+          <ScalarProperty Name="D_Date" ColumnName="D_Date" />
+          <ScalarProperty Name="A_Date" ColumnName="A_Date" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="NoOfPerson" ColumnName="NoOfPerson" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectRoom" FunctionName="VaagoProjectModel1.Store.selectRoom">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectRoom_Result">
+          <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Room_Status" ColumnName="Room_Status" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Room_Type_Id" ColumnName="Room_Type_Id" />
+          <ScalarProperty Name="IsClean" ColumnName="IsClean" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectRoom_byid" FunctionName="VaagoProjectModel1.Store.selectRoom_byid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectRoom_byid_Result">
+          <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+          <ScalarProperty Name="Room_No" ColumnName="Room_No" />
+          <ScalarProperty Name="Room_Status" ColumnName="Room_Status" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Room_Type_Id" ColumnName="Room_Type_Id" />
+          <ScalarProperty Name="IsClean" ColumnName="IsClean" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectRoomType" FunctionName="VaagoProjectModel1.Store.selectRoomType">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectRoomType_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Room_Price" ColumnName="Room_Price" />
+          <ScalarProperty Name="Max_Guest" ColumnName="Max_Guest" />
+          <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="selectRoomType_byid" FunctionName="VaagoProjectModel1.Store.selectRoomType_byid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.selectRoomType_byid_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Room_Price" ColumnName="Room_Price" />
+          <ScalarProperty Name="Max_Guest" ColumnName="Max_Guest" />
+          <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="show_record" FunctionName="VaagoProjectModel1.Store.show_record">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.show_record_Result">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Fist_Name" ColumnName="Fist_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsResereved" ColumnName="IsResereved" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Guest_Status" ColumnName="Guest_Status" />
+          <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="showGuest" FunctionName="VaagoProjectModel1.Store.showGuest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.showGuest_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Members" ColumnName="Members" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
+          <ScalarProperty Name="Child" ColumnName="Child" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="showGuest_byid" FunctionName="VaagoProjectModel1.Store.showGuest_byid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.showGuest_byid_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Members" ColumnName="Members" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
+          <ScalarProperty Name="Child" ColumnName="Child" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="VaagoProjectModel1.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="VaagoProjectModel1.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="VaagoProjectModel1.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="VaagoProjectModel1.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="VaagoProjectModel1.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VaagoProjectModel1.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VaagoProjectModel1.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VaagoProjectModel1.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UpdateCustomer" FunctionName="VaagoProjectModel1.Store.UpdateCustomer" />
+    <FunctionImportMapping FunctionImportName="updateGuest" FunctionName="VaagoProjectModel1.Store.updateGuest" />
+    <FunctionImportMapping FunctionImportName="updateReserve" FunctionName="VaagoProjectModel1.Store.updateReserve" />
+    <FunctionImportMapping FunctionImportName="updateRoom" FunctionName="VaagoProjectModel1.Store.updateRoom" />
+    <FunctionImportMapping FunctionImportName="updateRoomType" FunctionName="VaagoProjectModel1.Store.updateRoomType" />
+  </EntityContainerMapping>
+</Mapping>

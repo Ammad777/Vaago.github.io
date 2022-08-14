@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a13639135dcd4d9182792963f8a910c8" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="VaagoProjectModel1.Customer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.Guest" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.Reservation" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.Room" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.Room_Type" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.sysdiagram" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaagoProjectModel1.System_Admin" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Guest__Customer___32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Reservati__Custo__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Reservati__Room___33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Room__AdminId__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Room__Room_Type___36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="VaagoProjectModel1.FK__Room_Type__Admin__37A5467C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
